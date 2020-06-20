@@ -37,6 +37,7 @@
     <div id="main-wrapper">
 
       <article id="Feature">
+
         <h2>Feature</h2>
         <div id="Feature-content">
           <p>このaddonはAfter EffectsのScript <a href="https://aescripts.com/flow/">Flow</a>からインスピーレションを得て制作を行いました。</p>
@@ -57,23 +58,174 @@
           </p>
           <p>まずはexampleを触ってみてください。</p>
         </div>
+
       </article>
       <article id="Getting-Started">
+
         <h2>Getting Started</h2>
         <div id="Getting-Started-content">
-          
-        </div>
-      </article>
-      <article id="Version">
-        <h2>Version</h2>
-        <div id="Version-content">
+          <p>ofxEasingGUI/exampleを参照してください。まずは、メインウィンドウとサブウィンドウを作成します。
+            サブウィンドウ用のsetup、drawメソッドのも定義します。</p>
+            <div class="file-name">main.cpp</div>
+            <div class="program-source">
+              #include "ofMain.h"
+              #include "ofApp.h"
+              #include "ofAppGLFWWindow.h"
+
+              int main(){
+                ofGLFWWindowSettings settings;
+
+                //mainWindow
+                settings.setSize(1024, 768);
+                settings.setPosition(ofVec2f(600,0));
+                settings.resizable = true;
+                shared_ptr<ofAppBaseWindow> mainWindow = ofCreateWindow(settings);
+
+                //subWindow 1
+                //if you want more window/panel, You can add window/panel like the following sentence
+                settings.setSize(600, 600);
+                settings.setPosition(ofVec2f(0,0));
+                settings.resizable = false;
+                shared_ptr<ofAppBaseWindow> guiWindow = ofCreateWindow(settings);
+                guiWindow->setVerticalSync(false);
+
+                shared_ptr<ofApp> mainApp(new ofApp);
+                mainApp->setupGui();
+                ofAddListener(guiWindow->events().draw,mainApp.get(),&ofApp::drawGui);
+
+
+                ofRunApp(mainWindow, mainApp);
+                ofRunMainLoop();
+              }
+
+
+            </div>
+            <p>サブウィンドウ用のsetup、draw、keyEventメソッド、mouseEventメソッドを定義します。基本的にはなんて名前でもいいです。</p>
+
+            <div class="file-name">ofApp.h</div>
+            <div class="program-source-">
+              #include "ofMain.h"
+              #include "ofxEasingGUI.hpp"
+              #include "ofEvent.h"
+
+              class ofApp : public ofBaseApp{
+                public:
+                void setup();
+                void update();
+                void draw();
+
+                        ~~~~~~~~~
+                        ~~~~~~~~~
+
+                void dragEvent(ofDragInfo dragInfo);
+                void gotMessage(ofMessage msg);
+
+                void setupGui();
+                void drawGui(ofEventArgs & args);
+
+                void keyPressedGui(int &key);
+                void keyReleasedGui(int &key);
+                void mouseDraggedGui(ofVec2f &e);
+                void mousePressedGui(ofVec2f &e);
+                void mouseReleaseGui(ofVec2f &e);
+
+                ofxEasingGUi easing;
+              };
+            </div>
+            <p>メインウィンドウのsetup、draw、イベント関数の定義と同じくサブウィンドウ用のメソッドを定義していきます。</p>
+            <p>ofAddListener(easing.イベント,this,&ofApp::定義したイベント関数);のようにサブウィンドウのsetup関数に記述してください。</p>
+            <div class="file-name">ofApp.cpp</div>
+            <div class="program-source-">
+              #include "ofApp.h"
+
+              void ofApp::setup(){
+                  ~~~~~~~~~
+              }
+
+              void ofApp::setupGui(){
+                  easing.setup(100, 100, 400, 400);
+
+                  ofAddListener(easing.evKeyPressed,this,&ofApp::keyPressedGui);
+                  ofAddListener(easing.evKeyReleased,this,&ofApp::keyReleasedGui);
+
+                  ofAddListener(easing.evMouseDragged,this,&ofApp::mouseDraggedGui);
+                  ofAddListener(easing.evMousePressed,this,&ofApp::mousePressedGui);
+                  ofAddListener(easing.evMouseReleased,this,&ofApp::mouseReleaseGui);
+              }
+
+              ~~~~~~~~~
+              ~~~~~~~~~
+              ~~~~~~~~~
+
+              void ofApp::drawGui(ofEventArgs &args){
+
+                  easing.adjustEasing(1000, 2.0f, ofGetElapsedTimef());
+              }
+
+              void ofApp::keyPressedGui(int &key){
+
+                  if(key == 'c'){
+                      easing.clear();
+                  }
+                  if(key == 'p'){
+                      if(!(easing.getPreview())){
+                          easing.enablePreview();
+                      }
+                      else{
+                          easing2.disablePreview();
+                      }
+                  }
+                  else if(key == 'j'){
+                      easing.printJsonEasingBezier("test1");
+                      //        easing.printJsonEasingBezierTime("test2");
+                      //        easing.printJsonEasingFloat("test3");
+                      //        easing.printJsonEasingFloatTime("test4");
+                  }
+              }
+
+              void ofApp::mouseDraggedGui(ofVec2f &e){
+                  easing.mouseDraggedBezier(e);
+
+              }
+              void ofApp::mousePressedGui(ofVec2f &e){
+                  easing.mousePressedBezier(e);
+              }
+              void ofApp::mouseReleaseGui(ofVec2f &e){
+                  easing.mouseReleasedBezier();
+              }
+            </div>
+
+            <p>これでビルドしてくみてください。イージンググラフをいじれるようになっていると思います。
+            easingは基本的に0 ~ 1の間の正規化された数値が帰ってきて、それと積をとることによってイージングがかかるような仕組みです。</p>
 
         </div>
+
+      </article>
+      <article id="Version">
+
+        <h2>Version</h2>
+        <div id="Version-content">
+          <h4>latest version</h4>
+          <p> version major:1.0/minor:0.0</h4>
+          <h4>previous version</h4>
+          <p>...</p>
+          <h4>development environment</h4>
+          <p>of_v0.10.1_osx_release</p>
+          <p>macOS 10.14.6</p>
+        </div>
+
       </article>
       <article id="About-Class">
         <h2>About Class</h2>
         <div id="About-Class-content">
+          <p>ofxEasingGUI classについての関数の説明を記述しておきます。
+            細かく全体の関数について知りたい方は以下より参照してください。</p>
+          <a href="html/class.html">ofxEasingGUI class</a>
 
+          <div id="class-contet">
+            <h3>adjustEasing()</h3>
+            <p></p>
+          </div>
         </div>
       </article>
       <article id="Contact">
