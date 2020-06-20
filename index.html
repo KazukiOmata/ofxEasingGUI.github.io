@@ -231,17 +231,17 @@
               <div class="method-function">
                 <h5 class="function">void adjustEasing(int precision, float setTime,float currentTime);
 </h5>
-                <p class="argument">precision : グラフの描画精度を調整します100,1000のようなint型で設定します</p>
-                <p class="argument">setTime : アニメーションさせる時間を設定します。float型で例えば1秒なら1.0fのように設定します。</p>
-                <p class="argument">currentTime : 何秒間たったか認識するために現在の時刻を設定します。ofGetElapsedTimef()。</p>
+                <p class="argument">precision : グラフの描画精度を調整します100,1000のようなint型で渡します</p>
+                <p class="argument">setTime : アニメーションさせる時間を設定します。float型で例えば1秒なら1.0fのように渡します。</p>
+                <p class="argument">currentTime : 何秒間たったか認識するために現在の時刻を渡します。ofGetElapsedTimef()。</p>
               </div>
               <div class="method-funciton">
                 <h5 class="function">void adjustEasing(ofVec2f (&bezierArray)[4], float setTime,float currentTime);
 
 </h5>
                 <p class="argument">(&bezierArray)[4] : GUIで現在設定しているグラフの設定を参照の要素4の配列を渡すことで、受け取ることができます</p>
-                <p class="argument">setTime : アニメーションさせる時間を設定します。float型で例えば1秒なら1.0fのように設定します。</p>
-                <p class="argument">currentTime : 何秒間たったか認識するために現在の時刻を設定します。ofGetElapsedTimef()。</p>
+                <p class="argument">setTime : アニメーションさせる時間を設定します。float型で例えば1秒なら1.0fのように渡します。</p>
+                <p class="argument">currentTime : 何秒間たったか認識するために現在の時刻を渡します。ofGetElapsedTimef()。</p>
               </div>
               <div class="method-funciton">
                 <h5 class="function">void adjustEasing(ofVec2f (&bezierArray)[4] , int precision, float setTime,float currentTime);
@@ -249,9 +249,9 @@
 
 </h5>
                 <p class="argument">(&bezierArray)[4] : GUIで現在設定しているグラフの設定を参照の要素4の配列を渡すことで、受け取ることができます</p>
-                <p class="argument">precision : グラフの描画精度を調整します100,1000のようなint型で設定します</p>
-                <p class="argument">setTime : アニメーションさせる時間を設定します。float型で例えば1秒なら1.0fのように設定します。</p>
-                <p class="argument">currentTime : 何秒間たったか認識するために現在の時刻を設定します。ofGetElapsedTimef()。</p>
+                <p class="argument">precision : グラフの描画精度を調整します100,1000のようなint型で渡します</p>
+                <p class="argument">setTime : アニメーションさせる時間を設定します。float型で例えば1秒なら1.0fのように渡します。</p>
+                <p class="argument">currentTime : 何秒間たったか認識するために現在の時刻を渡します。ofGetElapsedTimef()。</p>
               </div>
               <p>(&bezierArray)[4]に関してで、こちらで受け取った要素4の配列は描きで説明するapplyEasingにそのまま使用することができます。
               そうすることで次に紹介するjsonファイルを使用せずともイージングを他のアニメーションに適用させることができます。ただ、これは製作中に使用する関数として設計されているため
@@ -289,8 +289,18 @@
               </div>
             </div>
             <div class="method">
-              <h3>applyEasing()</h3>
-              <p></p>
+              <h3>applyEasing~</h3>
+              <p>この関数でイージング関数を適用させます。引数にjsonファイルを入れることができて、adjustEasingやサブウィンドウがなくても、イージングをかけることができます。
+              なので、こちらは最終的な完成系に適応させるためのものです。最終的な完成時にはもちろんサブウィンドウやグラフエディタはいらないと思うので消しても大丈夫です。
+              こちらもオーバーロードで色々な形で適用させるようになっています。これらの関数は floatのリターンで設計されていて、
+              0 ~ 1の間で返ってきます。これを好きなものとの積を取ることでイージングアニメーションを得られます。具体的な使い方はexamapleを参照してください。
+              </p>
+              <div class="method-function">
+                <h5 class="function">float applyEasing(float setTime, float currentTime);</h5>
+                <p class="argument">setTime : アニメーションさせる時間を設定します。float型で例えば1秒なら1.0fのように渡します。</p>
+
+              </div>
+
             </div>
 
           </div>
