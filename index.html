@@ -225,11 +225,68 @@
           <div id="class-contet">
             <div class="method">
               <h3>adjustEasing()</h3>
-              <p></p>
+              <p>この関数はグラフの表示、グラフによる調整が主な機能になっています。
+              基本的にはサブウィンドウのdraw関数で呼び出すのでいいと思います。</p>
+              <p>adjustEasingにはオーバーロードでいくつかのパターンが用意されています。</p>
+              <div class="method-function">
+                <h5 class="function">void adjustEasing(int precision, float setTime,float currentTime);
+</h5>
+                <p class="argument">precision : グラフの描画精度を調整します100,1000のようなint型で設定します</p>
+                <p class="argument">setTime : アニメーションさせる時間を設定します。float型で例えば1秒なら1.0fのように設定します。</p>
+                <p class="argument">currentTime : 何秒間たったか認識するために現在の時刻を設定します。ofGetElapsedTimef()。</p>
+              </div>
+              <div class="method-funciton">
+                <h5 class="function">void adjustEasing(ofVec2f (&bezierArray)[4], float setTime,float currentTime);
+
+</h5>
+                <p class="argument">(&bezierArray)[4] : GUIで現在設定しているグラフの設定を参照の要素4の配列を渡すことで、受け取ることができます</p>
+                <p class="argument">setTime : アニメーションさせる時間を設定します。float型で例えば1秒なら1.0fのように設定します。</p>
+                <p class="argument">currentTime : 何秒間たったか認識するために現在の時刻を設定します。ofGetElapsedTimef()。</p>
+              </div>
+              <div class="method-funciton">
+                <h5 class="function">void adjustEasing(ofVec2f (&bezierArray)[4] , int precision, float setTime,float currentTime);
+;
+
+</h5>
+                <p class="argument">(&bezierArray)[4] : GUIで現在設定しているグラフの設定を参照の要素4の配列を渡すことで、受け取ることができます</p>
+                <p class="argument">precision : グラフの描画精度を調整します100,1000のようなint型で設定します</p>
+                <p class="argument">setTime : アニメーションさせる時間を設定します。float型で例えば1秒なら1.0fのように設定します。</p>
+                <p class="argument">currentTime : 何秒間たったか認識するために現在の時刻を設定します。ofGetElapsedTimef()。</p>
+              </div>
+              <p>(&bezierArray)[4]に関してで、こちらで受け取った要素4の配列は描きで説明するapplyEasingにそのまま使用することができます。
+              そうすることで次に紹介するjsonファイルを使用せずともイージングを他のアニメーションに適用させることができます。ただ、これは製作中に使用する関数として設計されているため
+            最終的にはjsonファイルに出力しておかないとプログラムを終了させた時に設定が消えてしまいます。</p>
             </div>
             <div class="method">
               <h3>printJSonEasing~</h3>
-              <p></p>
+              <p>この関数は二種類のjsonデータを出力することができます。adjustEasingでイージングを決定してそのデータをjsonファイルに出力することができます。
+              サブウィンドウのkeyPressed()等で呼び出す形で設定しておくと便利かもしれません。timeと書いてある関数は、出力されるファイルネームに日付時間がつけられます。
+              連続でjsonファイル名を変えずに出力させたい時に便利です。</p>
+              <div class="method-function">
+                <h5 class="function">void printJsonEasingBezier(string fileName);
+
+  </h5>
+                <p class="argument">fileName : 設定したいファイルネームをstring型で渡します。</p>
+
+              </div>
+              <div class="method-function">
+                <h5 class="function">void printJsonEasingBezierTime(string fileName);
+  </h5>
+                <p class="argument">fileName : 設定したいファイルネームをstring型で渡します。</p>
+
+              </div>
+              <div class="method-function">
+                <h5 class="function">void printJsonEasingFloat(string fileName);
+  </h5>
+                <p class="argument">fileName : 設定したいファイルネームをstring型で渡します。</p>
+
+              </div>
+              <div class="method-function">
+                <h5 class="function">void printJsonEasingFloatTime(string fileName);
+  </h5>
+                <p class="argument">fileName : 設定したいファイルネームをstring型で渡します。</p>
+
+              </div>
             </div>
             <div class="method">
               <h3>applyEasing()</h3>
