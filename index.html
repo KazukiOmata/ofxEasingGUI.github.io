@@ -6,6 +6,8 @@
 
   <link rel="stylesheet" type="text/css" href="css/index.css">
   <link rel="shrotcut icon" type="image/x-icom" href="images/icon.jpg">
+  <link rel="alternate" hreflang="en" href="https://kazukiomata.github.io/ofxEasingGUI.github.io/en/">
+
   <script type="text/javascript" src="js/index.js"></script>
 
 
@@ -13,7 +15,7 @@
 <body>
   <header>
     <div id="header-icon">
-      <div class="icon">ofxEasingGUI</div>
+      <div class="icon"><a href="https://kazukiomata.github.io/ofxEasingGUI.github.io/">ofxEasingGUI</a></div>
     </div>
     <div id="header-menu">
       <inline><a href="https://github.com/KazukiOmata/ofxEasingGUI">GitHub</a></inline>
@@ -22,29 +24,63 @@
       <inline><a href="#Version">Version</a></inline>
       <inline><a href="#About-Class">About Class</a></inline>
       <inline><a href="#Contact">Contact</a></inline>
+      <inline><a href="https://kazukiomata.github.io/ofxEasingGUI.github.io/en/">english</a></inline>
+
     </div>
+
   </header>
   <div id="main-container">
     <div id="main-visual">
-
-
+      <h1>How to use ofxEasingGUI</h1>
+      <p>openFrameworks addon</p>
     </div>
     <div id="main-wrapper">
 
       <article id="Feature">
-        
+        <h2>Feature</h2>
+        <div id="Feature-content">
+          <p>このaddonはAfter EffectsのScript <a href="https://aescripts.com/flow/">Flow</a>からインスピーレションを得て制作を行いました。</p>
+          <p>Flowのように、openFrameworksで何かをアニメーションする際に決まった関数から得られるイージングではなく、
+            GUIで自らが作ったカーブでイージングアニメーションをコントロールできるようなaddonを目指し制作したものです。
+          openFrameworksで現在のあなたのプロジェクトのメインウィンドウとは別に、イージング用のウィンドウを作成し、
+          ここにGUIを表示させて、アニメーションをコントロールさせていきます。
+          縦軸がValue、変化量を、横軸がTime,時間を表すような二次元グラフです。
+          </p>
+          <p><a href="https://github.com/jeffcrouse/ofxJSON">ofxJSON</a>に依存しており、中でJSONファイルを利用しています。
+          そのためこちらのaddonと共にofxJSONもダウンロードして、addonとして読み込んでください。ofxJSONは読み込むだけで大丈夫です。
+          </p>
+          <p>GUIでアニメーションを調整したら、JSONファイルにイージングのデータを出力します。そうすることで、GUIのウィンドウがなくても、
+            イージングを毎回手動で設定しなくても、いつでも同じイージングを適用することができます。
+          </p>
+          <p>現在のバージョンはv1.0 m0.0となっていて、初期段階のバージョンです。バグ・不具合等または追加したら便利な機能などがあった場合
+            ぜひ連絡（Twitter,mail）お願いします。
+          </p>
+          <p>まずはexampleを触ってみてください。</p>
+        </div>
       </article>
       <article id="Getting-Started">
-
+        <h2>Getting Started</h2>
+        <div id="Getting-Started-content">
+          
+        </div>
       </article>
       <article id="Version">
+        <h2>Version</h2>
+        <div id="Version-content">
 
+        </div>
       </article>
       <article id="About-Class">
+        <h2>About Class</h2>
+        <div id="About-Class-content">
 
+        </div>
       </article>
       <article id="Contact">
+        <h2>Contact</h2>
+        <div id="Contact-content">
 
+        </div>
       </article>
 
     </div>
