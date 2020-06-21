@@ -229,25 +229,19 @@
               基本的にはサブウィンドウのdraw関数で呼び出すのでいいと思います。</p>
               <p>adjustEasingにはオーバーロードでいくつかのパターンが用意されています。</p>
               <div class="method-function">
-                <h5 class="function">void adjustEasing(int precision, float setTime,float currentTime);
-</h5>
+                <h5 class="function">void adjustEasing(int precision, float setTime,float currentTime);</h5>
                 <p class="argument">precision : グラフの描画精度を調整します100,1000のようなint型で渡します</p>
                 <p class="argument">setTime : アニメーションさせる時間を設定します。float型で例えば1秒なら1.0fのように渡します。</p>
                 <p class="argument">currentTime : 何秒間たったか認識するために現在の時刻を渡します。ofGetElapsedTimef()。</p>
               </div>
               <div class="method-funciton">
-                <h5 class="function">void adjustEasing(ofVec2f (&bezierArray)[4], float setTime,float currentTime);
-
-</h5>
+                <h5 class="function">void adjustEasing(ofVec2f (&bezierArray)[4], float setTime,float currentTime);</h5>
                 <p class="argument">(&bezierArray)[4] : GUIで現在設定しているグラフの設定を参照の要素4の配列を渡すことで、受け取ることができます</p>
                 <p class="argument">setTime : アニメーションさせる時間を設定します。float型で例えば1秒なら1.0fのように渡します。</p>
                 <p class="argument">currentTime : 何秒間たったか認識するために現在の時刻を渡します。ofGetElapsedTimef()。</p>
               </div>
               <div class="method-funciton">
-                <h5 class="function">void adjustEasing(ofVec2f (&bezierArray)[4] , int precision, float setTime,float currentTime);
-;
-
-</h5>
+                <h5 class="function">void adjustEasing(ofVec2f (&bezierArray)[4] , int precision, float setTime,float currentTime);</h5>
                 <p class="argument">(&bezierArray)[4] : GUIで現在設定しているグラフの設定を参照の要素4の配列を渡すことで、受け取ることができます</p>
                 <p class="argument">precision : グラフの描画精度を調整します100,1000のようなint型で渡します</p>
                 <p class="argument">setTime : アニメーションさせる時間を設定します。float型で例えば1秒なら1.0fのように渡します。</p>
@@ -263,27 +257,22 @@
               サブウィンドウのkeyPressed()等で呼び出す形で設定しておくと便利かもしれません。timeと書いてある関数は、出力されるファイルネームに日付時間がつけられます。
               連続でjsonファイル名を変えずに出力させたい時に便利です。</p>
               <div class="method-function">
-                <h5 class="function">void printJsonEasingBezier(string fileName);
-
-  </h5>
+                <h5 class="function">void printJsonEasingBezier(string fileName);</h5>
                 <p class="argument">fileName : 設定したいファイルネームをstring型で渡します。</p>
 
               </div>
               <div class="method-function">
-                <h5 class="function">void printJsonEasingBezierTime(string fileName);
-  </h5>
+                <h5 class="function">void printJsonEasingBezierTime(string fileName);</h5>
                 <p class="argument">fileName : 設定したいファイルネームをstring型で渡します。</p>
 
               </div>
               <div class="method-function">
-                <h5 class="function">void printJsonEasingFloat(string fileName);
-  </h5>
+                <h5 class="function">void printJsonEasingFloat(string fileName);</h5>
                 <p class="argument">fileName : 設定したいファイルネームをstring型で渡します。</p>
 
               </div>
               <div class="method-function">
-                <h5 class="function">void printJsonEasingFloatTime(string fileName);
-  </h5>
+                <h5 class="function">void printJsonEasingFloatTime(string fileName);</h5>
                 <p class="argument">fileName : 設定したいファイルネームをstring型で渡します。</p>
 
               </div>
@@ -298,8 +287,25 @@
               <div class="method-function">
                 <h5 class="function">float applyEasing(float setTime, float currentTime);</h5>
                 <p class="argument">setTime : アニメーションさせる時間を設定します。float型で例えば1秒なら1.0fのように渡します。</p>
+                <p class="argument">currentTime : 何秒間たったか認識するために現在の時刻を渡します。ofGetElapsedTimef()。</p>
 
               </div>
+              <div class="method-function">
+                <h5 class="function">float applyEasing(ofVec2f (&bezierArray)[4], float setTime, float currentTime);</h5>
+                <p class="argument">(&bezierArray)[4] : adjustEasing(ofVec2f (&bezierArray)[4], float setTime,float currentTime)等で手に入った要素数4の配列を渡します。この情報を使ってイージングを生成します。</p>
+                <p class="argument">setTime : アニメーションさせる時間を設定します。float型で例えば1秒なら1.0fのように渡します。</p>
+                <p class="argument">currentTime : 何秒間たったか認識するために現在の時刻を渡します。ofGetElapsedTimef()。</p>
+
+              </div>
+              <div class="method-function">
+                <h5 class="function">    float applyEasingJsonBezier(string filePath, float setTime, float currentTime);
+</h5>
+                <p class="argument">(&bezierArray)[4] : adjustEasing(ofVec2f (&bezierArray)[4], float setTime,float currentTime)等で手に入った要素数4の配列を渡します。この情報を使ってイージングを生成します。</p>
+                <p class="argument">setTime : アニメーションさせる時間を設定します。float型で例えば1秒なら1.0fのように渡します。</p>
+                <p class="argument">currentTime : 何秒間たったか認識するために現在の時刻を渡します。ofGetElapsedTimef()。</p>
+
+              </div>
+
 
             </div>
 
