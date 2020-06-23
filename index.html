@@ -8,8 +8,12 @@
   <link rel="shrotcut icon" type="image/x-icom" href="images/icon.jpg">
   <link rel="alternate" hreflang="en" href="https://kazukiomata.github.io/ofxEasingGUI.github.io/en/">
 
-  <script type="text/javascript" src="js/index.js"></script>
 
+
+
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+
+  <script type="text/javascript" src="js/index.js"></script>
 
 </head>
 <body>
@@ -49,14 +53,14 @@
           </p>
           <p><a href="https://github.com/jeffcrouse/ofxJSON">ofxJSON</a>に依存しており、中でJSONファイルを利用しています。
           そのためこちらのaddonと共にofxJSONもダウンロードして、addonとして読み込んでください。ofxJSONは読み込むだけで大丈夫です。
-          </p>
-          <p>GUIでアニメーションを調整したら、JSONファイルにイージングのデータを出力します。そうすることで、GUIのウィンドウがなくても、
+
+          GUIでアニメーションを調整したら、JSONファイルにイージングのデータを出力します。そうすることで、GUIのウィンドウがなくても、
             イージングを毎回手動で設定しなくても、いつでも同じイージングを適用することができます。
-          </p>
-          <p>現在のバージョンはv1.0 m0.0となっていて、初期段階のバージョンです。バグ・不具合等または追加したら便利な機能などがあった場合
+
+          現在のバージョンはv1.0 m0.0となっていて、初期段階のバージョンです。バグ・不具合等または追加したら便利な機能などがあった場合
             ぜひ連絡（Twitter,mail）お願いします。
-          </p>
-          <p>まずはexampleを触ってみてください。</p>
+
+          まずはexampleを触ってみてください。</p>
         </div>
 
       </article>
@@ -67,7 +71,8 @@
           <p>ofxEasingGUI/exampleを参照してください。まずは、メインウィンドウとサブウィンドウを作成します。
             サブウィンドウ用のsetup、drawメソッドのも定義します。</p>
             <div class="file-name">main.cpp</div>
-            <div class="program-source">
+            <div class="program-source" id="sorce1"><pre><code>
+
               #include "ofMain.h"
               #include "ofApp.h"
               #include "ofAppGLFWWindow.h"
@@ -97,13 +102,13 @@
                 ofRunApp(mainWindow, mainApp);
                 ofRunMainLoop();
               }
-
-
+            </code>
+            </pre>
             </div>
             <p>サブウィンドウ用のsetup、draw、keyEventメソッド、mouseEventメソッドを定義します。基本的にはなんて名前でもいいです。</p>
 
             <div class="file-name">ofApp.h</div>
-            <div class="program-source-">
+            <div class="program-source-"><pre><code>
               #include "ofMain.h"
               #include "ofxEasingGUI.hpp"
               #include "ofEvent.h"
@@ -131,11 +136,13 @@
 
                 ofxEasingGUi easing;
               };
+            </code>
+            </pre>
             </div>
             <p>メインウィンドウのsetup、draw、イベント関数の定義と同じくサブウィンドウ用のメソッドを定義していきます。</p>
             <p>ofAddListener(easing.イベント,this,&ofApp::定義したイベント関数);のようにサブウィンドウのsetup関数に記述してください。</p>
             <div class="file-name">ofApp.cpp</div>
-            <div class="program-source-">
+            <div class="program-source-"><pre><code>
               #include "ofApp.h"
 
               void ofApp::setup(){
@@ -193,6 +200,8 @@
               void ofApp::mouseReleaseGui(ofVec2f &e){
                   easing.mouseReleasedBezier();
               }
+            </code>
+            </pre>
             </div>
 
             <p>これでビルドしてくみてください。イージンググラフをいじれるようになっていると思います。
@@ -206,9 +215,17 @@
         <h2>Version</h2>
         <div id="Version-content">
           <h4>latest version</h4>
-          <p> version major:1.0/minor:0.0</h4>
+          <p> <inline>v01m03</inline> :
+          <br>Jsonファイルを出力・入力に対応させました。
+            <br>exampleファイルを追加しました</p>
           <h4>previous version</h4>
-          <p>...</p>
+          <p><inline>v01m00</inline> : テストアップロード
+
+          <br><inline>v01m01</inline> : イージングの挙動を正しくしました。
+
+          <br><inline>v01m02</inline> : 補助便利関数を追加しました。、example_basicを追加しました。
+
+          </p>
           <h4>development environment</h4>
           <p>of_v0.10.1_osx_release</p>
           <p>macOS 10.14.6</p>
@@ -229,19 +246,19 @@
               基本的にはサブウィンドウのdraw関数で呼び出すのでいいと思います。</p>
               <p>adjustEasingにはオーバーロードでいくつかのパターンが用意されています。</p>
               <div class="method-function">
-                <h5 class="function">void adjustEasing(int precision, float setTime,float currentTime);</h5>
+                <h5 class="function"><inline class="type">void</inline> adjustEasing(<inline class="type">int</inline> precision, <inline class="type">float</inline> setTime,<inline class="type">float</inline> currentTime);</h5>
                 <p class="argument">precision : グラフの描画精度を調整します100,1000のようなint型で渡します</p>
                 <p class="argument">setTime : アニメーションさせる時間を設定します。float型で例えば1秒なら1.0fのように渡します。</p>
                 <p class="argument">currentTime : 何秒間たったか認識するために現在の時刻を渡します。ofGetElapsedTimef()。</p>
               </div>
-              <div class="method-funciton">
-                <h5 class="function">void adjustEasing(ofVec2f (&bezierArray)[4], float setTime,float currentTime);</h5>
+              <div class="method-function">
+                <h5 class="function"><inline class="type">void</inline> adjustEasing(ofVec2f (&bezierArray)[4] ,  <inline class="type">float</inline> setTime,<inline class="type">float</inline> currentTime);</h5>
                 <p class="argument">(&bezierArray)[4] : GUIで現在設定しているグラフの設定を参照の要素4の配列を渡すことで、受け取ることができます</p>
                 <p class="argument">setTime : アニメーションさせる時間を設定します。float型で例えば1秒なら1.0fのように渡します。</p>
                 <p class="argument">currentTime : 何秒間たったか認識するために現在の時刻を渡します。ofGetElapsedTimef()。</p>
               </div>
-              <div class="method-funciton">
-                <h5 class="function">void adjustEasing(ofVec2f (&bezierArray)[4] , int precision, float setTime,float currentTime);</h5>
+              <div class="method-function">
+                <h5 class="function"><inline class="type">void</inline> adjustEasing(ofVec2f (&bezierArray)[4] , <inline class="type">int</inline> precision, <inline class="type">float</inline> setTime,<inline class="type">float</inline> currentTime);</h5>
                 <p class="argument">(&bezierArray)[4] : GUIで現在設定しているグラフの設定を参照の要素4の配列を渡すことで、受け取ることができます</p>
                 <p class="argument">precision : グラフの描画精度を調整します100,1000のようなint型で渡します</p>
                 <p class="argument">setTime : アニメーションさせる時間を設定します。float型で例えば1秒なら1.0fのように渡します。</p>
@@ -252,30 +269,37 @@
             最終的にはjsonファイルに出力しておかないとプログラムを終了させた時に設定が消えてしまいます。</p>
             </div>
             <div class="method">
-              <h3>printJSonEasing~</h3>
+              <h3>exportJSonEasing~</h3>
               <p>この関数は二種類のjsonデータを出力することができます。adjustEasingでイージングを決定してそのデータをjsonファイルに出力することができます。
-              サブウィンドウのkeyPressed()等で呼び出す形で設定しておくと便利かもしれません。timeと書いてある関数は、出力されるファイルネームに日付時間がつけられます。
-              連続でjsonファイル名を変えずに出力させたい時に便利です。</p>
+              サブウィンドウのkeyPressed()等で呼び出す形で設定しておくと便利かもしれません。<inline class="line">timeと書いてある関数は、出力されるファイルネームに日付時間がつけられます。
+              連続でjsonファイル名を変えずに出力させたい時に便利です。</inline>JSONファイルはbin/dataに生成されます。</p>
+              <p class="description">※現在このTimeの入った関数はうまく動作していません。もし、連続でjsonファイルを生成させたい場合は、Timeと書いてない方の関数に引数として、fileNameに"fileName" + ofGetTimestampString()のように渡してください。</p>
               <div class="method-function">
-                <h5 class="function">void printJsonEasingBezier(string fileName);</h5>
+                <h5 class="function"><inline class="type">void</inline> exportJsonEasingBezier(<inline class="type">string</inline> fileName);</h5>
                 <p class="argument">fileName : 設定したいファイルネームをstring型で渡します。</p>
 
               </div>
               <div class="method-function">
-                <h5 class="function">void printJsonEasingBezierTime(string fileName);</h5>
+                <h5 class="function"><inline class="type">void</inline> exportJsonEasingBezierTime(<inline class="type">string</inline> fileName);</h5>
                 <p class="argument">fileName : 設定したいファイルネームをstring型で渡します。</p>
 
               </div>
               <div class="method-function">
-                <h5 class="function">void printJsonEasingFloat(string fileName);</h5>
+                <h5 class="function"><inline class="type">void</inline> exportJsonEasingFloat(<inline class="type">string</inline> fileName);</h5>
                 <p class="argument">fileName : 設定したいファイルネームをstring型で渡します。</p>
 
               </div>
               <div class="method-function">
-                <h5 class="function">void printJsonEasingFloatTime(string fileName);</h5>
+                <h5 class="function"><inline class="type">void</inline> exportJsonEasingFloatTime(<inline class="type">string</inline> fileName);</h5>
                 <p class="argument">fileName : 設定したいファイルネームをstring型で渡します。</p>
 
               </div>
+              <p>これらのJsonファイルにはBezierタイプとFloatタイプがあります。
+                <br>この後に紹介される。applyEasingでjsonファイルを使う場合は、それぞれにあった関数をコールしてください。
+              具体的な中身の違いはbezierの方は、グラフを構成するベジェ曲線の四つのポイントの座標が格納されます。それを後のapplyEasingでそのベジェの座標を使って計算につ書います。
+            Floatタイプの方では、イージングの計算された値が格納されます。そのため、apply時に計算する必要がなくなります。ですが、こちらの方がファイルデータは大きくなります。あまり大きなサイズになると
+          Jsonファイルの読み込みに時間がかかるので、bezierの方が向いているかもしれませんん。その時に軽い方など、お好きな方を使ってみてください。</p>
+
             </div>
             <div class="method">
               <h3>applyEasing~</h3>
@@ -285,29 +309,116 @@
               0 ~ 1の間で返ってきます。これを好きなものとの積を取ることでイージングアニメーションを得られます。具体的な使い方はexamapleを参照してください。
               </p>
               <div class="method-function">
-                <h5 class="function">float applyEasing(float setTime, float currentTime);</h5>
+                <h5 class="function"><inline class="type">float</inline> applyEasing(<inline class="type">float</inline> setTime, <inline class="type">float</inline> currentTime);</h5>
                 <p class="argument">setTime : アニメーションさせる時間を設定します。float型で例えば1秒なら1.0fのように渡します。</p>
                 <p class="argument">currentTime : 何秒間たったか認識するために現在の時刻を渡します。ofGetElapsedTimef()。</p>
 
               </div>
               <div class="method-function">
-                <h5 class="function">float applyEasing(ofVec2f (&bezierArray)[4], float setTime, float currentTime);</h5>
+                <h5 class="function"><inline class="type">float</inline> applyEasing(<inline class="type">int</inline> precision, <inline class="type">float</inline> setTime, <inline class="type">float</inline> currentTime);</h5>
+                <p class="argument">precision : グラフの描画精度を調整します100,1000のようなint型で渡します</p>
+                <p class="argument">setTime : アニメーションさせる時間を設定します。float型で例えば1秒なら1.0fのように渡します。</p>
+                <p class="argument">currentTime : 何秒間たったか認識するために現在の時刻を渡します。ofGetElapsedTimef()。</p>
+              </div>
+              <div class="method-function">
+                <h5 class="function"><inline class="type">float</inline> applyEasing(<inline class="type">int</inline> precision, <inline class="type">float</inline> setTime, <inline class="type">float</inline> currentTime, <inline class="type">float</inline> latency);</h5>
+                <p class="argument">precision : グラフの描画精度を調整します100,1000のようなint型で渡します</p>
+                <p class="argument">setTime : アニメーションさせる時間を設定します。float型で例えば1秒なら1.0fのように渡します。</p>
+                <p class="argument">currentTime : 何秒間たったか認識するために現在の時刻を渡します。ofGetElapsedTimef()。</p>
+                <p class="argument">latency : currentTimeからlatency秒だけ遅れてスタートします</p>
+              </div>
+
+              <div class="method-function">
+                <h5 class="function"><inline class="type">float</inline> applyEasing(<inline class="type">int</inline> precision, <inline class="type">float</inline> setTime, <inline class="type">float</inline> currentTime, <inline class="type">float</inline> latency,<inline class="type">float</inline>waitTime);</h5>
+                <p class="argument">precision : グラフの描画精度を調整します100,1000のようなint型で渡します</p>
+                <p class="argument">setTime : アニメーションさせる時間を設定します。float型で例えば1秒なら1.0fのように渡します。</p>
+                <p class="argument">currentTime : 何秒間たったか認識するために現在の時刻を渡します。ofGetElapsedTimef()。</p>
+                <p class="argument">latency : currentTimeからlatency秒だけ遅れてスタートします</p>
+                <p class="argument">waitTime : setTimeからwaitTime秒だけ遅れて終わります。</p>
+              </div>
+
+              <div class="method-function">
+                <h5 class="function"><inline class="type">float</inline> applyEasing(<inline class="type">ofVec2f</inline> (&bezierArray)[4], <inline class="type">int</inline> precision,  <inline class="type">float</inline> setTime, <inline class="type">float</inline> currentTime);</h5>
                 <p class="argument">(&bezierArray)[4] : adjustEasing(ofVec2f (&bezierArray)[4], float setTime,float currentTime)等で手に入った要素数4の配列を渡します。この情報を使ってイージングを生成します。</p>
+                <p class="argument">precision : グラフの描画精度を調整します100,1000のようなint型で渡します</p>
                 <p class="argument">setTime : アニメーションさせる時間を設定します。float型で例えば1秒なら1.0fのように渡します。</p>
                 <p class="argument">currentTime : 何秒間たったか認識するために現在の時刻を渡します。ofGetElapsedTimef()。</p>
 
               </div>
               <div class="method-function">
-                <h5 class="function">    float applyEasingJsonBezier(string filePath, float setTime, float currentTime);
-</h5>
+                <h5 class="function"><inline class="type">float</inline> applyEasing(<inline class="type">ofVec2f</inline> (&bezierArray)[4], <inline class="type">int</inline> precision,  <inline class="type">float</inline> setTime, <inline class="type">float</inline> currentTime, <inline class="type">float</inline> latency);</h5>
                 <p class="argument">(&bezierArray)[4] : adjustEasing(ofVec2f (&bezierArray)[4], float setTime,float currentTime)等で手に入った要素数4の配列を渡します。この情報を使ってイージングを生成します。</p>
+                <p class="argument">precision : グラフの描画精度を調整します100,1000のようなint型で渡します</p>
                 <p class="argument">setTime : アニメーションさせる時間を設定します。float型で例えば1秒なら1.0fのように渡します。</p>
                 <p class="argument">currentTime : 何秒間たったか認識するために現在の時刻を渡します。ofGetElapsedTimef()。</p>
+                <p class="argument">latency : currentTimeからlatency秒だけ遅れてスタートします</p>
+              </div>
+              <div class="method-function">
+                <h5 class="function"><inline class="type">float</inline> applyEasing(<inline class="type">ofVec2f</inline> (&bezierArray)[4], <inline class="type">int</inline> precision,  <inline class="type">float</inline> setTime, <inline class="type">float</inline> currentTime, <inline class="type">float</inline> latency,<inline class="type">float</inline> waitTime);</h5>
+                <p class="argument">(&bezierArray)[4] : adjustEasing(ofVec2f (&bezierArray)[4], float setTime,float currentTime)等で手に入った要素数4の配列を渡します。この情報を使ってイージングを生成します。</p>
+                <p class="argument">precision : グラフの描画精度を調整します100,1000のようなint型で渡します</p>
+                <p class="argument">setTime : アニメーションさせる時間を設定します。float型で例えば1秒なら1.0fのように渡します。</p>
+                <p class="argument">currentTime : 何秒間たったか認識するために現在の時刻を渡します。ofGetElapsedTimef()。</p>
+                <p class="argument">latency : currentTimeからlatency秒だけ遅れてスタートします</p>
+                <p class="argument">waitTime : setTimeからwaitTime秒だけ遅れて終わります。</p>
+              </div>
+
+              <div class="method-function">
+                <h5 class="function"><inline class="type">float</inline> applyEasingJsonBezier(<inline class="type">string</inline> filePath, <inline class="type">float</inline> setTime, <inline class="type">float</inline> currentTime);</h5>
+                <p class="argument">filePath : bin/dataの中に生成した、bezierタイプのjsonファイルのパスを渡します。</p>
+                <p class="argument">setTime : アニメーションさせる時間を設定します。float型で例えば1秒なら1.0fのように渡します。</p>
+                <p class="argument">currentTime : 何秒間たったか認識するために現在の時刻を渡します。ofGetElapsedTimef()。</p>
+              </div>
+              <div class="method-function">
+                <h5 class="function"><inline class="type">float</inline> applyEasingJsonBezier(<inline class="type">string</inline> filePath, <inline class="type">int</inline> precision,<inline class="type">float</inline> setTime, <inline class="type">float</inline> currentTime);</h5>
+                <p class="argument">filePath : bin/dataの中に生成した、bezierタイプのjsonファイルのパスを渡します。</p>
+                <p class="argument">precision : グラフの描画精度を調整します100,1000のようなint型で渡します</p>
+                <p class="argument">setTime : アニメーションさせる時間を設定します。float型で例えば1秒なら1.0fのように渡します。</p>
+                <p class="argument">currentTime : 何秒間たったか認識するために現在の時刻を渡します。ofGetElapsedTimef()。</p>
+              </div>
+              <div class="method-function">
+                <h5 class="function"><inline class="type">float</inline> applyEasingJsonBezier(<inline class="type">string</inline> filePath, <inline class="type">int</inline> precision,<inline class="type">float</inline> setTime, <inline class="type">float</inline> currentTime, <inline class="type">float</inline> latency);</h5>
+                <p class="argument">filePath : bin/dataの中に生成した、bezierタイプのjsonファイルのパスを渡します。</p>
+                <p class="argument">precision : グラフの描画精度を調整します100,1000のようなint型で渡します</p>
+                <p class="argument">setTime : アニメーションさせる時間を設定します。float型で例えば1秒なら1.0fのように渡します。</p>
+                <p class="argument">currentTime : 何秒間たったか認識するために現在の時刻を渡します。ofGetElapsedTimef()。</p>
+                <p class="argument">latency : currentTimeからlatency秒だけ遅れてスタートします</p>
+              </div>
+              <div class="method-function">
+                <h5 class="function"><inline class="type">float</inline> applyEasingJsonBezier(<inline class="type">string</inline> filePath, <inline class="type">int</inline> precision,<inline class="type">float</inline> setTime, <inline class="type">float</inline> currentTime, <inline class="type">float</inline> latency,<inline class="type">float</inline> waitTime));</h5>
+                <p class="argument">filePath : bin/dataの中に生成した、bezierタイプのjsonファイルのパスを渡します。</p>
+                <p class="argument">precision : グラフの描画精度を調整します100,1000のようなint型で渡します</p>
+                <p class="argument">setTime : アニメーションさせる時間を設定します。float型で例えば1秒なら1.0fのように渡します。</p>
+                <p class="argument">currentTime : 何秒間たったか認識するために現在の時刻を渡します。ofGetElapsedTimef()。</p>
+                <p class="argument">latency : currentTimeからlatency秒だけ遅れてスタートします</p>
+                <p class="argument">waitTime : setTimeからwaitTime秒だけ遅れて終わります。</p>
 
               </div>
 
+              <div class="method-function">
+                <h5 class="function"><inline class="type">float</inline> applyEasingJsonFloat(<inline class="type">string</inline> filePath, <inline class="type">float</inline> setTime, <inline class="type">float</inline> currentTime);</h5>
+                <p class="argument">filePath : bin/dataの中に生成した、bezierタイプのjsonファイルのパスを渡します。</p>
+                <p class="argument">setTime : アニメーションさせる時間を設定します。float型で例えば1秒なら1.0fのように渡します。</p>
+                <p class="argument">currentTime : 何秒間たったか認識するために現在の時刻を渡します。ofGetElapsedTimef()。</p>
+              </div>
+              <div class="method-function">
+                <h5 class="function"><inline class="type">float</inline> applyEasingJsonBezier(<inline class="type">string</inline> filePath,<inline class="type">float</inline> setTime, <inline class="type">float</inline> currentTime, <inline class="type">float</inline> latency);</h5>
+                <p class="argument">filePath : bin/dataの中に生成した、bezierタイプのjsonファイルのパスを渡します。</p>
+                <p class="argument">setTime : アニメーションさせる時間を設定します。float型で例えば1秒なら1.0fのように渡します。</p>
+                <p class="argument">currentTime : 何秒間たったか認識するために現在の時刻を渡します。ofGetElapsedTimef()。</p>
+                <p class="argument">latency : currentTimeからlatency秒だけ遅れてスタートします</p>
+              </div>
+              <div class="method-function">
+                <h5 class="function"><inline class="type">float</inline> applyEasingJsonBezier(<inline class="type">string</inline> filePath, <inline class="type">float</inline> setTime, <inline class="type">float</inline> currentTime, <inline class="type">float</inline> latency,<inline class="type">float</inline> waitTime));</h5>
+                <p class="argument">filePath : bin/dataの中に生成した、bezierタイプのjsonファイルのパスを渡します。</p>
+                <p class="argument">setTime : アニメーションさせる時間を設定します。float型で例えば1秒なら1.0fのように渡します。</p>
+                <p class="argument">currentTime : 何秒間たったか認識するために現在の時刻を渡します。ofGetElapsedTimef()。</p>
+                <p class="argument">latency : currentTimeからlatency秒だけ遅れてスタートします</p>
+                <p class="argument">waitTime : setTimeからwaitTime秒だけ遅れて終わります。</p>
 
+              </div>
             </div>
+
 
           </div>
         </div>
