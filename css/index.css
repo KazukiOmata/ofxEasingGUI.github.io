@@ -237,7 +237,10 @@ footer{
   margin: 0 0 0 0;
   width: 0 auto;
   padding: 30px 50px 90px 20px;
-  background-color: rgba(180,180,180,0.8);
+  border-style: solid;
+  border-weight:thin;
+  border-color: rgba(230, 230, 230, 0.7);
+  border-top: solid 500 rgba(230, 230, 230, 0.6);
 }
 
 #footer-icon{
